@@ -2,41 +2,119 @@
 <html>
 <head>
 <title>Pharma Quiz Arena</title>
+
 <style>
+
 body{
-font-family: Arial;
+font-family:Arial;
+background:#f4f4f4;
 text-align:center;
-background:#f2f2f2;
 }
 
-h1{
-color:#2c3e50;
+.quiz-box{
+background:white;
+width:400px;
+margin:auto;
+margin-top:100px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
 }
 
 button{
-padding:15px;
-font-size:18px;
-background:#27ae60;
-color:white;
-border:none;
-border-radius:5px;
-cursor:pointer;
+display:block;
+margin:10px auto;
+padding:10px;
+width:200px;
+font-size:16px;
 }
+
 </style>
+
 </head>
 
 <body>
 
-<h1>Welcome to Pharma Quiz Arena</h1>
+<div class="quiz-box">
 
-<p>Test your pharmacology knowledge!</p>
+<h2 id="question">Question</h2>
 
-<button onclick="startQuiz()">Start Quiz</button>
+<button onclick="checkAnswer('A')" id="A"></button>
+<button onclick="checkAnswer('B')" id="B"></button>
+<button onclick="checkAnswer('C')" id="C"></button>
+<button onclick="checkAnswer('D')" id="D"></button>
+
+</div>
 
 <script>
-function startQuiz(){
-alert("Quiz starting soon!");
+
+let questions = [
+
+{
+q:"Which drug is an osmotic diuretic?",
+A:"Furosemide",
+B:"Mannitol",
+C:"Spironolactone",
+D:"Hydrochlorothiazide",
+correct:"B"
+},
+
+{
+q:"Which drug is used for Parkinson's disease?",
+A:"Levodopa",
+B:"Metformin",
+C:"Amoxicillin",
+D:"Aspirin",
+correct:"A"
+},
+
+{
+q:"Which drug is an ACE inhibitor?",
+A:"Losartan",
+B:"Amlodipine",
+C:"Enalapril",
+D:"Propranolol",
+correct:"C"
 }
+
+];
+
+let current=0;
+
+function loadQuestion(){
+
+let q=questions[current];
+
+document.getElementById("question").innerText=q.q;
+document.getElementById("A").innerText=q.A;
+document.getElementById("B").innerText=q.B;
+document.getElementById("C").innerText=q.C;
+document.getElementById("D").innerText=q.D;
+
+}
+
+function checkAnswer(ans){
+
+if(ans==questions[current].correct){
+alert("Correct!");
+}
+else{
+alert("Wrong!");
+}
+
+current++;
+
+if(current<questions.length){
+loadQuestion();
+}
+else{
+document.body.innerHTML="<h1>Quiz Finished</h1>";
+}
+
+}
+
+loadQuestion();
+
 </script>
 
 </body>
