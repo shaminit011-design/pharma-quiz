@@ -4,7 +4,6 @@
 <title>Pharma Quiz Arena</title>
 
 <style>
-
 body{
 font-family:Arial;
 background:#f4f4f4;
@@ -27,8 +26,8 @@ margin:10px auto;
 padding:10px;
 width:200px;
 font-size:16px;
+cursor:pointer;
 }
-
 </style>
 
 </head>
@@ -37,7 +36,7 @@ font-size:16px;
 
 <div class="quiz-box">
 
-<h2 id="question">Question</h2>
+<h2 id="question">Loading Question...</h2>
 
 <button onclick="checkAnswer('A')" id="A"></button>
 <button onclick="checkAnswer('B')" id="B"></button>
@@ -48,7 +47,7 @@ font-size:16px;
 
 <script>
 
-let questions = [
+let questions=[
 
 {
 q:"Which drug is an osmotic diuretic?",
@@ -60,7 +59,7 @@ correct:"B"
 },
 
 {
-q:"Which drug is used for Parkinson's disease?",
+q:"Which drug is used in Parkinson's disease?",
 A:"Levodopa",
 B:"Metformin",
 C:"Amoxicillin",
@@ -80,6 +79,7 @@ correct:"C"
 ];
 
 let current=0;
+let score=0;
 
 function loadQuestion(){
 
@@ -96,9 +96,9 @@ document.getElementById("D").innerText=q.D;
 function checkAnswer(ans){
 
 if(ans==questions[current].correct){
+score++;
 alert("Correct!");
-}
-else{
+}else{
 alert("Wrong!");
 }
 
@@ -106,9 +106,8 @@ current++;
 
 if(current<questions.length){
 loadQuestion();
-}
-else{
-document.body.innerHTML="<h1>Quiz Finished</h1>";
+}else{
+document.body.innerHTML="<h1>Your Score: "+score+"</h1>";
 }
 
 }
